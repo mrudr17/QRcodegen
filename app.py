@@ -20,13 +20,12 @@ def main():
     
     # Get input from user
     data = st.text_input('Enter the data to encode:')
+    image_size = st.slider('Select image size (pixels):', 100, 1000, 400)
     
     submit = st.button('Submit')
 
     if submit:
     
-        image_size = st.slider('Select image size (pixels):', 100, 1000, 400)
-
         # Generate QR code
         if data:
             img = generate_qr_code(data, image_size)
