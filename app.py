@@ -20,20 +20,25 @@ def main():
     
     # Get input from user
     data = st.text_input('Enter the data to encode:')
-    image_size = st.slider('Select image size (pixels):', 100, 1000, 400)
     
-    # Generate QR code
-    if data:
-        img = generate_qr_code(data, image_size)
-        st.image(img)
-        buffered = BytesIO()
-        img.save(buffered, format="PNG")
-        byte_im = buffered.getvalue()
-        btn = st.download_button(
-          label="Download Image",
-          data=byte_im,
-          file_name="output.png",
-          mime="image/png",)
+    submit = st.button('Submit')
+
+    if submit:
+    
+        image_size = st.slider('Select image size (pixels):', 100, 1000, 400)
+
+        # Generate QR code
+        if data:
+            img = generate_qr_code(data, image_size)
+            st.image(img)
+            buffered = BytesIO()
+            img.save(buffered, format="PNG")
+            byte_im = buffered.getvalue()
+            btn = st.download_button(
+              label="Download Image",
+              data=byte_im,
+              file_name="output.png",
+              mime="image/png",)
 
 if __name__ == '__main__':
     main()
